@@ -6,4 +6,9 @@ public class Positive {
     public Positive(Long number) {
         this.number = number;
     }
+
+    public Long getNumber() {
+        return number;
+    }
 }
+
