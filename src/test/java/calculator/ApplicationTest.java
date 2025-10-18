@@ -32,6 +32,13 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 계산_결과_안내_문구_출력() {
+        assertSimpleTest(() -> {
+            run("\n");
+            assertThat(output()).contains("결과 :");
+        });
+    }
 
     @Override
     public void runMain() {
