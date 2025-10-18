@@ -81,6 +81,43 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    void 커스텀_구분자_사용_단일_숫자_결과_출력() {
+        assertSimpleTest(() -> {
+            run("//!\\n1\n");
+            assertThat(output()).contains("결과 : 1");
+        });
+    }
+
+    @Test
+    void 커스텀_구분자_사용_여러_숫자_결과_출력() {
+        assertSimpleTest(() -> {
+            run("//!\\n1!2!3\n");
+            assertThat(output()).contains("결과 : 6");
+        });
+    }
+
+    @Test
+    void 기본_커스텀_구분자_복합_사용_여러_숫자_결과_출력() {
+        assertSimpleTest(() -> {
+            run("//!\\n1,2:3!4\n");
+            assertThat(output()).contains("결과 : 10");
+        });
+    }
+
+    @Test
+    void 기본_구문자를_커스텀_구분자_추가_시도_예외_처리() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> runException("//,\\n")).isInstanceOf(IllegalArgumentException.class);
+        });
+    }
+    @Test
+    void 숫자를_커스텀_구분자_추가_시도_예외_처리() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> runException("//4\\n")).isInstanceOf(IllegalArgumentException.class);
+        });
+    }
+
 
     @Override
     public void runMain() {

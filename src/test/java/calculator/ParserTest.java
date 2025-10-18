@@ -53,6 +53,25 @@ class ParserTest {
     }
 
 
+    @Test
+    void 커스텀_구분자_역직렬화() {
+        // Given
+        String inputText = "//;\\n1;2;3";
+        List<Positive> positives = new ArrayList<>();
+        Delimiter delimiter = new Delimiter();
+
+        // When
+        Parser parser = new Parser(inputText, positives, delimiter);
+
+        // Then
+        assertEquals(1L, positives.get(0).getNumber());
+        assertEquals(2L, positives.get(1).getNumber());
+        assertEquals(3L, positives.get(2).getNumber());
+    }
+
+
+
+
 
 
 }
