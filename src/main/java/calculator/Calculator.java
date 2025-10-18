@@ -1,10 +1,30 @@
 package calculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Calculator {
-    String inputText;
-    // TODO: 출력용 필드 / 출력 메서드 구현
+    private Long result;
+    private List<Positive> positives;
+    private Delimiter delimiter;
 
     public Calculator(String inputText) {
-        this.inputText = inputText;
+        this.result = 0L;
+        positives = new ArrayList<>();
+        delimiter = new Delimiter();
+        new Parser(inputText, positives, delimiter);
+        sumPositives();
+    }
+
+    private void addPositive(Positive positive) {
+        result += positive.getNumber();
+    }
+
+    private void sumPositives() {
+        positives.forEach(this::addPositive);
+    }
+
+    public Long getResult() {
+        return result;
     }
 }

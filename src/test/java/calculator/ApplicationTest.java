@@ -40,6 +40,30 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 빈_문자열_계산_결과_출력() {
+        assertSimpleTest(() -> {
+            run("\n");
+            assertThat(output()).contains("결과 : 0");
+        });
+    }
+
+    @Test
+    void 단일_숫자_입력_결과_출력() {
+        assertSimpleTest(() -> {
+            run("1\n");
+            assertThat(output()).contains("결과 : 1");
+        });
+    }
+
+    @Test
+    void 기본_구분자_포함_여러_숫자_입력_결과_출력() {
+        assertSimpleTest(() -> {
+            run("1,2,3:4\n");
+            assertThat(output()).contains("결과 : 10");
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

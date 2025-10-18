@@ -17,7 +17,7 @@ public class Application {
     private static void printOutputNotice(Calculator calculator){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("결과 : ");
-        // TODO: 계산 결과 붙이기
+        stringBuilder.append(calculator.getResult());
         System.out.println(stringBuilder.toString());
     }
 }
