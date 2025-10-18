@@ -1,15 +1,16 @@
 package calculator;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class ParserTest {
-    
+
     @Test
-    void 해피_패스_기본_구분자_직렬화(){
+    void 해피_패스_기본_구분자_역직렬화() {
         // Given
         String inputText = "1,2,3:4";
         List<Positive> positives = new ArrayList<>();
@@ -24,8 +25,9 @@ class ParserTest {
         assertEquals(3L, positives.get(2).getNumber());
         assertEquals(4L, positives.get(3).getNumber());
     }
+
     @Test
-    void 공백_문자_기본_구분자_직렬화(){
+    void 공백_문자_기본_구분자_역직렬화() {
         // Given
         String inputText = "";
         List<Positive> positives = new ArrayList<>();
@@ -37,6 +39,20 @@ class ParserTest {
         // Then
         assertTrue(positives.isEmpty());
     }
+
+    @Test
+    void 잘못된_문자_검증() {
+        //Given
+        String inputText = "1!2!3!4";
+        List<Positive> positives = new ArrayList<>();
+        Delimiter delimiter = new Delimiter();
+        //When
+        //Then
+        assertThatThrownBy(() -> new Parser(inputText, positives, delimiter)).isInstanceOf(
+                IllegalArgumentException.class);
+    }
+
+
 
 
 }
