@@ -16,13 +16,6 @@ class ApplicationTest extends NsTest {
 //        });
 //    }
 //
-//    @Test
-//    void 예외_테스트() {
-//        assertSimpleTest(() ->
-//            assertThatThrownBy(() -> runException("-1,2,3"))
-//                .isInstanceOf(IllegalArgumentException.class)
-//        );
-//    }
 
     @Test
     void 입력_안내_문구_출력() {
@@ -62,6 +55,14 @@ class ApplicationTest extends NsTest {
             run("1,2,3:4\n");
             assertThat(output()).contains("결과 : 10");
         });
+    }
+
+    @Test
+    void 양수_입력_검증_테스트() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("-1,2,3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
     }
 
     @Override
