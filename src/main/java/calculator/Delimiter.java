@@ -28,12 +28,8 @@ public class Delimiter {
         if (newDelimiter.length() != 1) {
             throw new IllegalArgumentException("커스텀 구분자는 필수 길이는 1입니다");
         }
-        
-        if (",".equals(newDelimiter)) {
-            throw new IllegalArgumentException("기본 구분자를 커스텀 구분자로 추가할 수 없습니다.");
-        }
-        
-        if (":".equals(newDelimiter)) {
+
+        if (",".equals(newDelimiter) || ":".equals(newDelimiter)) {
             throw new IllegalArgumentException("기본 구분자를 커스텀 구분자로 추가할 수 없습니다.");
         }
         
