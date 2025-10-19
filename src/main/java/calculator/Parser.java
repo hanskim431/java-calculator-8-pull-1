@@ -2,11 +2,23 @@ package calculator;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
 
 public class Parser {
     public Parser(String inputText, List<Positive> positives, Delimiter delimiter) {
+        validateParameters(inputText, positives, delimiter);
         parseInputText(inputText, positives, delimiter);
+    }
+
+    private void validateParameters(String inputText, List<Positive> positives, Delimiter delimiter) {
+        if (inputText == null) {
+            throw new IllegalArgumentException("입력 문자열은 null일 수 없습니다.");
+        }
+        if (positives == null) {
+            throw new IllegalArgumentException("결과 리스트는 null일 수 없습니다.");
+        }
+        if (delimiter == null) {
+            throw new IllegalArgumentException("구분자는 null일 수 없습니다.");
+        }
     }
 
     private void parseInputText(String inputText, List<Positive> positives, Delimiter delimiter) {
